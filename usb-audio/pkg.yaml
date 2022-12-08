@@ -21,12 +21,13 @@ steps:
         mkdir -p /rootfs
         export KERNELRELEASE=$(cat include/config/kernel.release)
         make -j $(nproc) modules_install M=sound DEPMOD=/toolchain/bin/depmod INSTALL_MOD_PATH=/rootfs
-        depmod -b /rootfs snd-usb-audio.so
+        # depmod -b /rootfs snd-usb-audio.so
     install:
       - |
         export KERNELRELEASE=$(cat include/config/kernel.release)
-        mkdir /rootfs/
-        cp /lib/modules/$KERNELRELEASE/sound /rootfs/lib/modules/$KERNELRELEASE/sound
+        ls /rootfs
+        ls /rootfs/lib
+        cp /rootfs/lib/modules/$KERNELRELEASE/sound /rootfs/lib/modules/$KERNELRELEASE/sound
     test:
       - |
         # https://www.kernel.org/doc/html/v4.15/admin-guide/module-signing.html#signed-modules-and-stripping
