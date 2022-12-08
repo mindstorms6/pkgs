@@ -27,7 +27,7 @@ steps:
     install:
       - |
         export KERNELRELEASE=$(cat /src/include/config/kernel.release)
-        ls /rootfs/lib/modules/$KERNELRELEASE/
+        ls /rootfs/lib/modules/$KERNELRELEASE/kernel
         cp -R /rootfs/lib/modules/$KERNELRELEASE/build/sound /rootfs/lib/modules/$KERNELRELEASE/sound
     test:
       - |
