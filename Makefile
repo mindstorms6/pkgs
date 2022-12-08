@@ -63,6 +63,7 @@ TARGETS = \
 	socat \
 	syslinux \
 	u-boot \
+	usb-audio \
 	util-linux \
 	xfsprogs
 

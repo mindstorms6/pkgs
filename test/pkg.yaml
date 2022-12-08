@@ -35,6 +35,7 @@ dependencies:
   - stage: socat
   - stage: syslinux
   - stage: u-boot
+  # - stage: usb-audio
   - stage: util-linux
   - stage: xfsprogs
 finalize:
