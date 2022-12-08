@@ -19,14 +19,13 @@ steps:
       - |
         cd /src
         export KERNELRELEASE=$(cat include/config/kernel.release)
-        mkdir -p /rootfs/lib/modules/$KERNELRELEASE
-        make -j $(nproc) modules_install M=sound DEPMOD=/toolchain/bin/depmod INSTALL_MOD_PATH=/rootfs
-        depmod -b /rootfs $KERNELRELEASE
-        unlink /rootfs/lib/modules/$KERNELRELEASE/build
-        unlink /rootfs/lib/modules/$KERNELRELEASE/source
+        make -j $(nproc) modules_install M=sound DEPMOD=/toolchain/bin/depmod
+        depmod -b /lib/modules/$KERNELRELEASE/sound $KERNELRELEASE
     install:
       - |
-        # cp /lib/modules/* /rootfs/lib/modules
+        export KERNELRELEASE=$(cat include/config/kernel.release)
+        mkdir /rootfs/
+        cp /lib/modules/$KERNELRELEASE/sound /rootfs/lib/modules/$KERNELRELEASE/sound
     test:
       - |
         # https://www.kernel.org/doc/html/v4.15/admin-guide/module-signing.html#signed-modules-and-stripping
