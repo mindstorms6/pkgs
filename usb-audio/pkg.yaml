@@ -26,6 +26,7 @@ steps:
         ls /rootfs
         ls /rootfs/lib
         ls /rootfs/lib/modules
+        export KERNELRELEASE=$(cat /src/include/config/kernel.release)
         cp /rootfs/lib/modules/$KERNELRELEASE/sound /rootfs/lib/modules/$KERNELRELEASE/sound
     test:
       - |
