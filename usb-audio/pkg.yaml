@@ -18,9 +18,10 @@ steps:
     build:
       - |
         cd /src
+        mkdir -p /rootfs
         export KERNELRELEASE=$(cat include/config/kernel.release)
-        make -j $(nproc) modules_install M=sound DEPMOD=/toolchain/bin/depmod
-        depmod -b /lib/modules/$KERNELRELEASE/sound $KERNELRELEASE
+        make -j $(nproc) modules_install M=sound DEPMOD=/toolchain/bin/depmod INSTALL_MOD_PATH=/rootfs
+        depmod -b /rootfs snd-usb-audio.so
     install:
       - |
         export KERNELRELEASE=$(cat include/config/kernel.release)
