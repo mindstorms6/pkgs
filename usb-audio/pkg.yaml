@@ -19,15 +19,10 @@ steps:
       - |
         cd /src
         make -j $(nproc) M=sound
-        # make -j $(nproc) modules
+        make -j $(nproc) modules
     install:
       - |
-        mkdir -p /rootfs/lib/modules/$(cat /src/include/config/kernel.release)/
-
-        # create these so we don't get warnings when depmod runs
-        touch /rootfs/lib/modules/$(cat /src/include/config/kernel.release)/modules.order /rootfs/lib/modules/$(cat /src/include/config/kernel.release)/modules.builtin
-
-        make -C /src M=$(pwd)/src modules_install INSTALL_MOD_PATH=/rootfs
+        cp /lib/modules/* /rootfs/lib/modules
     test:
       - |
         # https://www.kernel.org/doc/html/v4.15/admin-guide/module-signing.html#signed-modules-and-stripping
