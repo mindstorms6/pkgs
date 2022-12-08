@@ -19,6 +19,7 @@ steps:
       - |
         cd /src
         export KERNELRELEASE=$(cat include/config/kernel.release)
+        mkdir -p /rootfs/lib/modules/$KERNELRELEASE
         make -j $(nproc) modules_install M=sound DEPMOD=/toolchain/bin/depmod INSTALL_MOD_PATH=/rootfs
         depmod -b /rootfs $KERNELRELEASE
         unlink /rootfs/lib/modules/$KERNELRELEASE/build
