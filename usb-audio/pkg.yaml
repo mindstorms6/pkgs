@@ -21,15 +21,16 @@ steps:
         mkdir -p /rootfs
         export KERNELRELEASE=$(cat include/config/kernel.release)
         make -j $(nproc) modules_install DEPMOD=/toolchain/bin/depmod INSTALL_MOD_PATH=/rootfs
+        # depmod -b /rootfs $KERNELRELEASE
     install:
       - |
         export KERNELRELEASE=$(cat /src/include/config/kernel.release)
         ls /rootfs/lib/modules/$KERNELRELEASE/build/
-        cp /rootfs/lib/modules/$KERNELRELEASE/sound /rootfs/lib/modules/$KERNELRELEASE/sound
+        cp /rootfs/lib/modules/$KERNELRELEASE/build/sound /rootfs/lib/modules/$KERNELRELEASE/sound
     test:
       - |
         # https://www.kernel.org/doc/html/v4.15/admin-guide/module-signing.html#signed-modules-and-stripping
-        # find /rootfs/lib/modules -name '*.ko' -exec grep -FL '~Module signature appended~' {} \+
+        find /rootfs/lib/modules -name '*.ko' -exec grep -FL '~Module signature appended~' {} \+
 finalize:
   - from: /rootfs
     to: /
