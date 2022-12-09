@@ -42,7 +42,7 @@ steps:
         make -j $(nproc) scripts 
         make -j $(nproc) modules_prepare 
         make -j $(nproc) modules_install 
-        depmod -b /rootfs $KERNELRELEASE
+        depmod -b /src $KERNELRELEASE
         unlink /rootfs/lib/modules/$KERNELRELEASE/build
         unlink /rootfs/lib/modules/$KERNELRELEASE/source
     install:
