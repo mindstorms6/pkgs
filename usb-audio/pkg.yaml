@@ -47,11 +47,11 @@ steps:
     install:
       - |
         export KERNELRELEASE=$(cat /src/include/config/kernel.release)
+        
+        # cat /src/.config
         ls /rootfs/lib/modules/$KERNELRELEASE/kernel
-        cat /src/.config
-
-        ls /rootfs/lib/modules/$KERNELRELEASE/kernel/sound
-        cp -R /src/lib/modules/$KERNELRELEASE/kernel/sound /rootfs/lib/modules/$KERNELRELEASE/sound
+        # ls /rootfs/lib/modules/$KERNELRELEASE/kernel/sound
+        # cp -R /src/lib/modules/$KERNELRELEASE/kernel/sound /rootfs/lib/modules/$KERNELRELEASE/sound
     test:
       - |
         # https://www.kernel.org/doc/html/v4.15/admin-guide/module-signing.html#signed-modules-and-stripping
