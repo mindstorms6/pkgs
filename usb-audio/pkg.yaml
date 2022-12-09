@@ -11,7 +11,15 @@ steps:
         cd /src
         echo 'Enabling CONFIG_SND_USB_AUDIO'
         echo 'CONFIG_SOUND=m' >> .config
+        echo 'CONFIG_SND=m' >> .config
+        echo 'CONFIG_SND_PCM_TIMER=y' >> .config
+        echo 'CONFIG_SND_SUPPORT_OLD_API=y' >> .config
+        echo 'CONFIG_SND_PROC_FS=y' >> .config
+        echo 'CONFIG_SND_VERBOSE_PROCFS=y' >> .config
         echo 'CONFIG_SND_DMA_SGBUF=m' >> .config
+        echo 'CONFIG_SND_DRIVERS=m' >> .config
+        echo 'CONFIG_SND_PCI=m' >> .config
+        echo 'CONFIG_SND_HDA_PREALLOC_SIZE=0' >> .config
         echo 'CONFIG_SND_SEQUENCER=m' >> .config
         echo 'CONFIG_SND_SEQ_DUMMY=m' >> .config
         echo 'CONFIG_SND_SEQ_HRTIMER_DEFAULT=m' >> .config
@@ -20,10 +28,10 @@ steps:
         echo 'CONFIG_SND_SEQ_VIRMIDI=m' >> .config
         echo 'CONFIG_SND_TIMER=m' >> .config
         echo 'CONFIG_SND_PCM=m' >> .config
-        echo 'CONFIG_SND_DRIVERS=m' >> .config
+        echo 'CONFIG_SND_X86=y' >> .config
         echo 'CONFIG_SND_USB_AUDIO=m' >> .config        
         echo 'CONFIG_SND_USB=m' >> .config
-        echo 'CONFIG_SND=m' >> .config
+        
         cat .config
     build:
       - |
