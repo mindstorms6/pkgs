@@ -38,8 +38,8 @@ steps:
         cd /src
         mkdir -p /rootfs
         export KERNELRELEASE=$(cat include/config/kernel.release)
-        make -j $(nproc) prepare 
-        make -j $(nproc) scripts 
+        make -j $(nproc) prepare DEPMOD=/toolchain/bin/depmod INSTALL_MOD_PATH=/rootfs
+        make -j $(nproc) scripts DEPMOD=/toolchain/bin/depmod INSTALL_MOD_PATH=/rootfs
         make -j $(nproc) modules_prepare DEPMOD=/toolchain/bin/depmod INSTALL_MOD_PATH=/rootfs
         make -j $(nproc) modules_install DEPMOD=/toolchain/bin/depmod INSTALL_MOD_PATH=/rootfs
         depmod -b /rootfs $KERNELRELEASE
