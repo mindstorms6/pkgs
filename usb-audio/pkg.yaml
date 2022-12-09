@@ -54,7 +54,7 @@ steps:
         
         # cat /src/.config
         ls /rootfs/lib/modules/$KERNELRELEASE/kernel
-        ls /src/lib/modules/$KERNELRELEASE/kernel/sound
+        ls /src/lib/modules/$KERNELRELEASE/kernel/
         ls /rootfs/lib/modules/$KERNELRELEASE/kernel/sound
         # cp -R /src/lib/modules/$KERNELRELEASE/kernel/sound /rootfs/lib/modules/$KERNELRELEASE/sound
     test:
