@@ -40,7 +40,7 @@ steps:
         export KERNELRELEASE=$(cat include/config/kernel.release)
         make -j $(nproc) prepare 
         make -j $(nproc) scripts 
-        make -j $(nproc) modules_prepare 
+        make -j $(nproc) modules_prepare DEPMOD=/toolchain/bin/depmod INSTALL_MOD_PATH=/rootfs
         make -j $(nproc) modules_install DEPMOD=/toolchain/bin/depmod INSTALL_MOD_PATH=/rootfs
         depmod -b /rootfs $KERNELRELEASE
         unlink /rootfs/lib/modules/$KERNELRELEASE/build
@@ -51,6 +51,7 @@ steps:
         
         # cat /src/.config
         ls /rootfs/lib/modules/$KERNELRELEASE/kernel
+        ls /rootfs/lib/modules
         # ls /src/lib/modules/$KERNELRELEASE/kernel/
         ls /rootfs/lib/modules/$KERNELRELEASE/kernel/sound
         # cp -R /src/lib/modules/$KERNELRELEASE/kernel/sound /rootfs/lib/modules/$KERNELRELEASE/sound
