@@ -11,9 +11,10 @@ steps:
         cd /src
         echo 'Enabling CONFIG_SND_USB_AUDIO'
         echo 'CONFIG_SND_USB_AUDIO=m' >> .config
-        echo 'CONFIG_SOUND=y' >> .config
+        echo 'CONFIG_SOUND=m' >> .config
         echo 'CONFIG_SND_USB=m' >> .config
         echo 'CONFIG_SND=m' >> .config
+        echo 'CONFIG_SND_DRIVERS=m' >> .config
         cat .config
     build:
       - |
