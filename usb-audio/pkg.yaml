@@ -10,11 +10,20 @@ steps:
       - |
         cd /src
         echo 'Enabling CONFIG_SND_USB_AUDIO'
-        echo 'CONFIG_SND_USB_AUDIO=m' >> .config
         echo 'CONFIG_SOUND=m' >> .config
+        echo 'CONFIG_SND_DMA_SGBUF=m' >> .config
+        echo 'CONFIG_SND_SEQUENCER=m' >> .config
+        echo 'CONFIG_SND_SEQ_DUMMY=m' >> .config
+        echo 'CONFIG_SND_SEQ_HRTIMER_DEFAULT=m' >> .config
+        echo 'CONFIG_SND_SEQ_MIDI_EVENT=m' >> .config
+        echo 'CONFIG_SND_SEQ_MIDI=m' >> .config
+        echo 'CONFIG_SND_SEQ_VIRMIDI=m' >> .config
+        echo 'CONFIG_SND_TIMER=m' >> .config
+        echo 'CONFIG_SND_PCM=m' >> .config
+        echo 'CONFIG_SND_DRIVERS=m' >> .config
+        echo 'CONFIG_SND_USB_AUDIO=m' >> .config        
         echo 'CONFIG_SND_USB=m' >> .config
         echo 'CONFIG_SND=m' >> .config
-        echo 'CONFIG_SND_DRIVERS=m' >> .config
         cat .config
     build:
       - |
@@ -32,7 +41,7 @@ steps:
         export KERNELRELEASE=$(cat /src/include/config/kernel.release)
         ls /rootfs/lib/modules/$KERNELRELEASE/kernel
         cat /src/.config
-        
+
         ls /rootfs/lib/modules/$KERNELRELEASE/kernel/sound
         cp -R /src/lib/modules/$KERNELRELEASE/kernel/sound /rootfs/lib/modules/$KERNELRELEASE/sound
     test:
