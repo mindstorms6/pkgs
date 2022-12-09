@@ -22,7 +22,7 @@ steps:
         echo 'CONFIG_SND_HDA_PREALLOC_SIZE=0' >> .config
         echo 'CONFIG_SND_SEQUENCER=m' >> .config
         echo 'CONFIG_SND_SEQ_DUMMY=m' >> .config
-        echo 'CONFIG_SND_SEQ_HRTIMER_DEFAULT=0' >> .config
+        echo 'CONFIG_SND_SEQ_HRTIMER_DEFAULT=y' >> .config
         echo 'CONFIG_SND_SEQ_MIDI_EVENT=m' >> .config
         echo 'CONFIG_SND_SEQ_MIDI=m' >> .config
         echo 'CONFIG_SND_SEQ_VIRMIDI=m' >> .config
@@ -42,7 +42,7 @@ steps:
         make -j $(nproc) scripts 
         make -j $(nproc) modules_prepare 
         make -j $(nproc) modules_install 
-        depmod -b /src $KERNELRELEASE
+        depmod $KERNELRELEASE
         unlink /rootfs/lib/modules/$KERNELRELEASE/build
         unlink /rootfs/lib/modules/$KERNELRELEASE/source
     install:
