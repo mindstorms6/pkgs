@@ -43,15 +43,15 @@ steps:
         make -j $(nproc) modules_prepare 
         make -j $(nproc) modules_install 
         depmod $KERNELRELEASE
-        unlink /rootfs/lib/modules/$KERNELRELEASE/build
-        unlink /rootfs/lib/modules/$KERNELRELEASE/source
+        # unlink /rootfs/lib/modules/$KERNELRELEASE/build
+        # unlink /rootfs/lib/modules/$KERNELRELEASE/source
     install:
       - |
         export KERNELRELEASE=$(cat /src/include/config/kernel.release)
         
         # cat /src/.config
         ls /rootfs/lib/modules/$KERNELRELEASE/kernel
-        # ls /src/lib/modules/$KERNELRELEASE/kernel/
+        ls /src/lib/modules/$KERNELRELEASE/kernel/
         ls /rootfs/lib/modules/$KERNELRELEASE/kernel/sound
         # cp -R /src/lib/modules/$KERNELRELEASE/kernel/sound /rootfs/lib/modules/$KERNELRELEASE/sound
     test:
