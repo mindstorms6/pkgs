@@ -31,6 +31,8 @@ steps:
       - |
         export KERNELRELEASE=$(cat /src/include/config/kernel.release)
         ls /rootfs/lib/modules/$KERNELRELEASE/kernel
+        cat /src/.config
+        
         ls /rootfs/lib/modules/$KERNELRELEASE/kernel/sound
         cp -R /src/lib/modules/$KERNELRELEASE/kernel/sound /rootfs/lib/modules/$KERNELRELEASE/sound
     test:
